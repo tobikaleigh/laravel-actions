@@ -1,0 +1,22 @@
+{
+  "name": "tobikaleigh/laravel-actions",
+  "autoload": {
+    "psr-4": {
+      "Tobikaleigh\\Actions\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Tobias Lund Nielsen",
+      "email": "tobikaleigh@gmail.com"
+    }
+  ],
+  "require": {
+    "illuminate/collections": "^10.0 || ^11.0",
+    "illuminate/queue": "^10.0 || ^11.0",
+    "illuminate/database": "^10.0 || ^11.0",
+    "illuminate/config": "^10.0 || ^11.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
