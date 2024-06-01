@@ -2,8 +2,8 @@
 
 namespace Tobikaleigh\Actions\Traits;
 
-use App\Actions\Action;
-use App\Actions\QueueableAction;
+use Tobikaleigh\Actions\Action;
+use Tobikaleigh\Actions\QueueableAction;
 use Illuminate\Support\Collection;
 use Illuminate\Foundation\Bus\PendingDispatch;
 
