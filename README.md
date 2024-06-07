@@ -13,6 +13,7 @@ namespace App\Models;
 use Tobikaleigh\Actions\Traits\HasActions;
 
 class Order extends Model {
+    
     use HasActions;
 
     protected static $actions = [
@@ -136,6 +137,7 @@ class Order extends Model {
         ];
     }
 }
+```
 
 ## Support
 
