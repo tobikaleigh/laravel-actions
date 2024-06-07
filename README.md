@@ -12,7 +12,7 @@ namespace App\Models;
 // Traits
 use Tobikaleigh\Actions\Traits\HasActions;
 
-Class Order extends Model {
+class Order extends Model {
     use HasActions;
 
     protected static $actions = [
@@ -111,6 +111,32 @@ $order->queueAction('cancel');
 // Or run it synchronously, if you want..
 $order->runAction('cancel');
 ```
+
+If you wish to, you can customize the queue the action should be dispatched to.
+
+```php
+namespace App\Models;
+
+class Order extends Model {
+
+    use HasActions;
+
+    protected static $actions = [
+        'cancel'        => \App\Actions\Order\CancelAction::class,
+    ]
+
+    /**
+     * Get the queues for the actions.
+     */
+    protected function actionViaQueues(): array
+    {
+        return [
+            // 'action' => 'queue'
+            'cancel'    => 'on-demand'
+        ];
+    }
+}
+
 ## Support
 
 Feel free to open an issue if you have any questions.
@@ -120,10 +146,6 @@ Feel free to open an issue if you have any questions.
 ```bash
 composer test
 ```
-
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
 
 ## License
 
