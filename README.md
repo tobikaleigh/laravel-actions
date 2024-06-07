@@ -83,36 +83,6 @@ class DeleteAction extends QueueableAction {
 
 Feel free to open an issue if you have any questions.
 
-## Installation
-
-You can install the package via composer:
-
-```bash
-composer require spatie/laravel-activitylog
-```
-
-The package will automatically register itself.
-
-You can publish the migration with:
-
-```bash
-php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="activitylog-migrations"
-```
-
-_Note_: The default migration assumes you are using integers for your model IDs. If you are using UUIDs, or some other format, adjust the format of the subject_id and causer_id fields in the published migration before continuing.
-
-After publishing the migration you can create the `activity_log` table by running the migrations:
-
-```bash
-php artisan migrate
-```
-
-You can optionally publish the config file with:
-
-```bash
-php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="activitylog-config"
-```
-
 ## Testing
 
 ```bash
