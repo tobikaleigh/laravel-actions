@@ -18,7 +18,7 @@ trait HasActions
 {
     public bool $enableLoggingModelActions = true;
 
-    private function actions(): Collection
+    public function actions(): Collection
     {
         if (isset(static::$actions)) {
             return collect(static::$actions);
@@ -35,6 +35,7 @@ trait HasActions
             throw new InvalidAction('Action ' . $name . ' not found for ' . class_basename($this) . '.');
         }
 
+        print_r($action);
         $action = new $action($this, ...$args);
 
         if (!$action instanceof Action) {

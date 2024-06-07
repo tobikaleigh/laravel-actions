@@ -1,10 +1,10 @@
 <?php
 
-use Tobikaleigh\Actions\Test\Models\SampleModel as Model;
+use Tobikaleigh\Actions\Test\Models\SampleModel;
 
 it('can run a sample action', function () {
-    $model  = Model::create(['name' => 'sample']);
-    $output = $model->runAction('sample-action');
+    $object  = new SampleModel();
+    $output = $object->runAction('sample-action');
 
     expect($output)->toBe('success');
 });

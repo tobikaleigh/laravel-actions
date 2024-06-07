@@ -2,10 +2,16 @@
 
 namespace Tobikaleigh\Actions\Test\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// Interfaces
+use Tobikaleigh\Actions\Actionable;
 
-class SampleModel extends Model
+// Traits
+use Tobikaleigh\Actions\Traits\HasActions;
+
+class SampleModel implements Actionable
 {
+    use HasActions;
+
     protected static $actions = [
         'sample-action'     => \Tobikaleigh\Actions\Test\Actions\SampleAction::class,
     ];
