@@ -69,9 +69,9 @@ $order->cancel();
 $order->runAction('cancel');
 ```
 
-# Dispatch to a queue for longrunning tasks
+# Dispatch to a queue for long-running tasks
 
-You can dispatch any action to the [Laravel Queue](https://laravel.com/docs/queues). Extend the `QueueableAction`.
+You can dispatch any action to the [Laravel Queue](https://laravel.com/docs/queues). Extend the action using `QueueableAction`.
 
 ```php
 namespace App\Actions\Order;
