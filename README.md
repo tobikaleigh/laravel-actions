@@ -55,6 +55,7 @@ class CancelAction extends Action {
     }
 }
 ```
+Now simply run the action using ``runAction()``.
 
 ```php
 use App\Models\Order;
