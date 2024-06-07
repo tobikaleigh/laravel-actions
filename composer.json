@@ -1,6 +1,7 @@
 {
   "name": "tobikaleigh/laravel-actions",
   "description": "Use app/actions as a way to organize your Laravel application",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Tobikaleigh\\Actions\\": "src/"
