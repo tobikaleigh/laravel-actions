@@ -1,6 +1,6 @@
 # Simple, reusable and easy to use actions inside your Laravel app
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/tobikaleigh/laravel-actions/run-tests.yml?branch=main&label=Tests)](https://github.com/tobikaleigh/laravel-actions/actions/workflows/run-tests.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/tobikaleigh/laravel-actions/run-tests.yml?label=Tests)
 
 This is a simple package designed to add reusable actions to your Laravel application. It is inspired by the /actions directory from Laravel Jetstream. Really simple and easy to use actions designed for your Laravel Models.
 
