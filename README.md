@@ -7,10 +7,16 @@ This is a simple package designed to add reusable actions to your Laravel applic
 Here's a demo of how you can use it:
 
 ```php
+namespace App\Models;
+
+// Traits
+use Tobikaleigh\Actions\Traits\HasActions;
+
 Class Order extends Model {
+    use HasActions;
 
     protected static $actions = [
-        'cancel'        => \App\Actions\Order\DeleteAction::class,
+        'cancel'        => \App\Actions\Order\CancelAction::class,
     ]
 
     /**
@@ -23,19 +29,23 @@ Class Order extends Model {
 }
 ```
 
+Create the action. Usually you would put this inside the /actions directory.
+
 ```php
+namespace App\Actions\Order;
+
 use Tobikaleigh\Actions\Action;
 
 // Models
 use App\Models\Order;
 
-class DeleteAction extends Action {
+class CancelAction extends Action {
 
     public function __construct(public Order $post){
 
     }
 
-    public function handle(): bool
+    public function handle(): mixed
     {
         // Do a bunch of stuff here..
 
@@ -50,20 +60,27 @@ class DeleteAction extends Action {
 use App\Models\Order;
 
 $order = Order::find(100);
-$order->delete();
+
+// Using your shorthand.
+$order->cancel();
+
+// Or normally in any case.
+$order->runAction('cancel');
 ```
 
 # Even dispatch to a queue for longrunning tasks
 
-You can dispatch any action to Laravels queue system.
+You can dispatch any action to the [Laravel Queue](https://laravel.com/docs/queues). Extend the `QueueableAction`.
 
 ```php
+namespace App\Actions\Order;
+
 use Tobikaleigh\Actions\QueueableAction;
 
 // Models
 use App\Models\Order;
 
-class DeleteAction extends QueueableAction {
+class CancelAction extends QueueableAction {
 
     public function __construct(public Order $post){
 
@@ -78,6 +95,20 @@ class DeleteAction extends QueueableAction {
         $this->order->delete();
     }
 }
+```
+
+Then queue it when needed.
+
+```php
+use App\Models\Order;
+
+$order = Order::find(100);
+
+// Send it to the queue..
+$order->queueAction('cancel');
+
+// Or run it synchronously, if you want..
+$order->runAction('cancel');
 ```
 ## Support
 
