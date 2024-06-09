@@ -2,8 +2,6 @@
 
 namespace Tobikaleigh\Actions\Exceptions;
 
-use Exception;
-
-class InvalidAction extends Exception
+class NotFoundException extends ActionException
 {
 }

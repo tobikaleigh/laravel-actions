@@ -8,8 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Foundation\Bus\PendingDispatch;
 
 // Exceptions
-use Throwable;
-use Tobikaleigh\Actions\Exceptions\InvalidAction;
+use Tobikaleigh\Actions\Exceptions\ActionException;
 
 // Jobs
 use Tobikaleigh\Actions\Jobs\ActionJob;
@@ -32,20 +31,20 @@ trait HasActions
         $action = $this->actions()->get($name);
 
         if (is_null($action)) {
-            throw new InvalidAction('Action ' . $name . ' not found for ' . class_basename($this) . '.');
+            throw ActionException::notFound('Action ' . $name . ' not found for ' . class_basename($this) . '.');
         }
 
         print_r($action);
         $action = new $action($this, ...$args);
 
         if (!$action instanceof Action) {
-            throw new InvalidAction('Action ' . $action::class . ' should extend' . Action::class . '.');
+            throw ActionException::invalid('Action ' . $action::class . ' should extend' . Action::class . '.');
         }
 
         return $action;
     }
 
-    public function logActionErrorEvent(Action $action, Throwable $exception): void
+    public function logActionErrorEvent(Action $action, \Throwable $exception): void
     {
         if ($this->enableLoggingModelActions) {
             $class = class_basename($action);
@@ -90,7 +89,7 @@ trait HasActions
 
         try {
             $handle = $action->handle();
-        } catch (Throwable $exception) {
+        } catch (\Throwable $exception) {
             $this->logActionErrorEvent($action, $exception);
 
             throw $exception;
@@ -104,7 +103,7 @@ trait HasActions
         $action = $this->resolveAction($name, ...$args);
 
         if (!$action instanceof QueueableAction) {
-            throw new InvalidAction('Queued action ' . $action::class . ' should extend' . QueueableAction::class . '.');
+            throw ActionException::invalid('Queued action ' . $action::class . ' should extend' . QueueableAction::class . '.');
         }
 
         $queue = $this->actionViaQueues()[$name] ?? $action->viaQueue();
