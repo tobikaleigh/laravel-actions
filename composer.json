@@ -22,7 +22,8 @@
     "illuminate/collections": "^10.0 || ^11.0",
     "illuminate/queue": "^10.0 || ^11.0",
     "illuminate/database": "^10.0 || ^11.0",
-    "illuminate/config": "^10.0 || ^11.0"
+    "illuminate/config": "^10.0 || ^11.0",
+    "illuminate/bus": "^10.0 || ^11.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
