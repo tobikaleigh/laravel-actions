@@ -98,6 +98,14 @@ trait HasActions
         return $handle;
     }
 
+    /**
+     * Just an alias for runAction.
+     */
+    public function action(string $name, ...$args): mixed
+    {
+        return $this->runAction($name, ...$args);
+    }
+
     public function queueAction(string $name, ...$args): PendingDispatch
     {
         $action = $this->resolveAction($name, ...$args);
