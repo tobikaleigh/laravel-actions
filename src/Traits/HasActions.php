@@ -34,7 +34,6 @@ trait HasActions
             throw ActionException::notFound('Action ' . $name . ' not found for ' . class_basename($this) . '.');
         }
 
-        print_r($action);
         $action = new $action($this, ...$args);
 
         if (!$action instanceof Action) {
